@@ -23,6 +23,9 @@ COPY . .
 # Create samples dir (bundled traffic video goes here)
 RUN mkdir -p /app/samples
 
+# Give appuser ownership of the /app directory so it can create the SQLite database
+RUN chown -R appuser:appuser /app
+
 USER appuser
 
 EXPOSE 8000
