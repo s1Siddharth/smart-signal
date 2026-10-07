@@ -26,6 +26,8 @@ htmlcov/
 backend/samples/*.mp4
 !backend/samples/.gitkeep
 backend/smart_signal.db
+*.pt
+backend/runs/
 
 # IDEs and Editors
 .vscode/
