@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.pyo
+.env
+.env.*
+service-account*.json
+smart_signal.db
+samples/
+*.mp4
+*.avi

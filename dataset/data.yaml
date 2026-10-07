@@ -1,0 +1,9 @@
+path: a:/OE/dataset
+train: images/train
+val: images/train # Using train for val just for simplicity, split later if needed
+
+names:
+  0: car
+  1: motorcycle
+  2: bus
+  3: truck

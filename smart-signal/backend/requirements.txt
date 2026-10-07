@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+python-multipart
+websockets
+pydantic
+sqlmodel
+slowapi
+opencv-python-headless
+ultralytics
+firebase-admin

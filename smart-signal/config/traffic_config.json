@@ -1,0 +1,80 @@
+{
+  "_comment": "Smart Adaptive Traffic Signal System — Central Configuration Reference",
+  "_note": "Most values are controlled via backend/.env (environment variables) or live /api/config endpoint. This file documents the schema.",
+
+  "camera": {
+    "source": "0",
+    "camera_index": 0,
+    "yolo_model": "yolov8n.pt",
+    "yolo_conf": 0.35,
+    "yolo_imgsz": 640,
+    "detector": "yolo",
+    "process_every_n_frames": 1
+  },
+
+  "detection": {
+    "vehicle_classes": ["car", "motorcycle", "bus", "truck"],
+    "vehicle_weights": {
+      "motorcycle": 0.5,
+      "car": 1.0,
+      "bus": 2.5,
+      "truck": 2.5
+    },
+    "smoothing_window_s": 1.5
+  },
+
+  "roads": ["A", "B", "C", "D"],
+  "phases": {
+    "P1": ["A", "C"],
+    "P2": ["B", "D"]
+  },
+
+  "signal_timing": {
+    "max_green_s": 120,
+    "min_green_s": 10,
+    "yellow_s": 3,
+    "all_red_s": 1,
+    "empty_cutoff_s": 35,
+    "empty_confirm_s": 3,
+    "starvation_wait_s": 150
+  },
+
+  "adaptive_priority": {
+    "_comment": "Priority score = w1*norm_count + w2*norm_density + w3*norm_wait",
+    "w1_vehicle_count": 0.4,
+    "w2_density": 0.4,
+    "w3_waiting_time": 0.2,
+    "seconds_per_vehicle": 2.0,
+    "startup_lost_s": 2.0
+  },
+
+  "ambulance": {
+    "hsv_lower": [0, 100, 100],
+    "hsv_upper": [10, 255, 255],
+    "min_area_px": 500,
+    "hold_s": 30,
+    "clear_s": 3
+  },
+
+  "simulation": {
+    "vehicle_scale": 1.0,
+    "max_speed": 0.08,
+    "demo_speed": 1.0
+  },
+
+  "rois": {
+    "_comment": "Per-road polygon ROI coordinates (x,y pairs in camera frame pixels). Loaded from roi.json at runtime. These are defaults for a 640x480 frame.",
+    "A": [[0, 0], [320, 0], [320, 240], [0, 240]],
+    "B": [[320, 0], [640, 0], [640, 240], [320, 240]],
+    "C": [[0, 240], [320, 240], [320, 480], [0, 480]],
+    "D": [[320, 240], [640, 240], [640, 480], [320, 480]]
+  },
+
+  "security": {
+    "max_upload_bytes": 209715200,
+    "allowed_video_extensions": [".mp4", ".m4v", ".mov", ".avi", ".webm", ".mpg", ".mpeg", ".ogv"],
+    "cors_origins": ["http://localhost:5173"],
+    "ws_auth_timeout_s": 5,
+    "ws_broadcast_hz": 5
+  }
+}
